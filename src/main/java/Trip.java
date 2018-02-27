@@ -1,3 +1,5 @@
+package main.java;
+
 public class Trip implements Move, Comparable {
     private static int idCount;
     private int id;
