@@ -1,13 +1,12 @@
 public class Trip implements Move {
-    private static int idCount = 0;
+    private static int idCount;
     private int id;
     private double speed;
     private double theCentralAngleOfTheArc;
     private double timeStop;
     private double distance;
-    private double distanseAdd = 0;
-
-    private double time = 0;
+    private double distanseAdd;
+    private double time;
 
     public Trip(double speed, double theCentralAngleOfTheArc, double timeStop, double distance) {
         id = ++idCount;
@@ -19,18 +18,7 @@ public class Trip implements Move {
     }
 
     public Trip(double speed, double theCentralAngleOfTheArc, double timeStop, double distance, double distanceAdd) {
-        if (theCentralAngleOfTheArc != 180.0) {
-            try {
-                throw new DataException("Невернные данные");
-            } catch (DataException e) {
-                e.printStackTrace();
-            }
-        }
-        id = ++idCount;
-        this.speed = speed;
-        this.theCentralAngleOfTheArc = Math.PI * theCentralAngleOfTheArc / 180;
-        this.timeStop = timeStop;
-        this.distance = distance;
+        this(speed, theCentralAngleOfTheArc, timeStop, distance);
         this.distanseAdd = distanceAdd;
         calculation();
     }

@@ -1,6 +1,6 @@
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         //1. С помощью одного оператора определить и инициализировать массив из не менее 10 поездок (хотя бы одна поездка
         // каждого типа должна быть в массиве; не использовать датчики случайных чисел).
         Trips trips = new Trips (new Trip[]{
@@ -20,8 +20,7 @@ public class Main {
         trips.print();
 
         //3. Создать копию массива.
-        Trips trips2 = new Trips();
-        trips2.copy(trips);
+        Trips trips2 = (Trips) trips.clone();
 
         //4. Упорядочить новый массив поездок по убыванию времени поездки.
         trips2.sortByTime();
@@ -34,9 +33,6 @@ public class Main {
 
         //7. Определить, есть ли в массиве хотя бы одна поездка длительностью от 25 до 30 минут включительно.
         System.out.println("Есть ли поездка длительностью от 25 до 35 минут: " + trips2.isATripBetween(25, 30));
-
-
-
     }
 
 

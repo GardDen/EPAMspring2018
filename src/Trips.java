@@ -1,11 +1,8 @@
-public class Trips {
+public class Trips implements Cloneable {
     Trip[] trips;
 
     public Trips(Trip[] trips) {
         this.trips = trips;
-    }
-
-    public Trips() {
     }
 
     //2
@@ -16,13 +13,12 @@ public class Trips {
         System.out.println();
     }
 
-    //3
-    public void copy(Trips copyData) {
-        trips = new Trip[copyData.getTrips().length];
-        for (int i = 0; i < trips.length; i++) {
-            trips[i] = copyData.getTrips()[i];
-        }
-    }
+    /*//3
+    public Trips copy() {
+        Trip[] newTrips = new Trip[trips.length];
+        System.arraycopy(trips, 0, newTrips, 0, trips.length);
+        return newTrips;
+    }*/
 
     //4
     public void sortByTime() {
@@ -55,4 +51,23 @@ public class Trips {
     public Trip[] getTrips() {
         return trips;
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    /*
+    1. Я бы изменил сортировку, sortByTime, пусть по дефолту сортирует по времени, и принимает перегрузку на компаратор
+2. getTrips возвращает настоящий массив, эт плохо
+переделал через клонирование 4. copy переписать на нативный arraycopy
+5. конструктор принимает массив, переделать на varargs
+удалил 6. если есть пустой конструктор то должны быть методы для добавления, иначе он бессмысленный
+7. Trip не должен следить сам за своим id, имхо
++8. у double и int начальное значение и так 0
+клонирование 3. copy принимает массив, но он не статический, зачем он принимает массив?
+клонирование 10. copy копирует массив, а не Trips
++ 11. реализуешь клонирование, имплементируй интерфейс - Cloneable
+1*. Есть реализованные сортировки лучше их юзать, либо выбрать алгоритм побыстрее
+     */
 }
